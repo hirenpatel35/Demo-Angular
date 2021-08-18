@@ -1,0 +1,52 @@
+
+<br>
+<br>
+<div class="row" style=" margin: auto;width: 80%;">
+  <div class="col-lg-12">
+    <button class="btn btn-success" (click)="syncEvent()">Sync (Track By)</button>
+  </div>
+</div>
+
+<br>
+<br>
+<div class="bs-docs-section" style=" margin: auto;width: 80%;">
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-hover" *ngIf="events && events.length>0;else noEventDataTemplate">
+        <thead>
+          <th (click)="sortingEvents('EventCode')">Event Code <img *ngIf="'EventCode' == fieldName"
+              [src]="orderBy=='asc'?'images/up-arrow.png':'images/down-arrow.png'" /> </th>
+          <th (click)="sortingEvents('EventName')">Event Name <img *ngIf="'EventName' == fieldName"
+              [src]="orderBy=='asc'?'images/up-arrow.png':'images/down-arrow.png'" /> </th>
+          <th (click)="sortingEvents('StartDate')">Start Date <img *ngIf="'StartDate' == fieldName"
+              [src]="orderBy=='asc'?'images/up-arrow.png':'images/down-arrow.png'" /> </th>
+          <th (click)="sortingEvents('Fees')">Fees <img *ngIf="'Fees' == fieldName"
+              [src]="orderBy=='asc'?'images/up-arrow.png':'images/down-arrow.png'" /> </th>
+          <th>Show Details</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of events | sorting:fieldName : orderBy; trackBy: eventTrackBy">
+            <td>
+              <span [innerText]="item.EventCode"></span>
+            </td>
+            <td>
+              <span [innerText]="item.EventName"></span>
+            </td>
+            <td>
+              <span [innerText]="item.StartDate | date"></span>
+            </td>
+            <td>
+              <span [innerText]="item.Fees"></span>
+            </td>
+            <td>
+              <!-- <button class="btn btn-success" (click)="onEventSelection(item.EventId)">Show Details</button> -->
+              <a class="btn btn-success" [routerLink]="['/events', item.EventId]">Show Details</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #noEventDataTemplate>No Event Found!</ng-template>
+<!-- <app-event-details *ngIf="eventId > 0" [eventId]="eventId"></app-event-details> -->

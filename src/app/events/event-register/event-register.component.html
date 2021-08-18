@@ -1,0 +1,62 @@
+<h1 [innerText]="title"></h1>
+<hr>
+{{test()}}
+<br>
+<div class="container">
+  <form [formGroup]="demoEventForm.eventForm">
+    <fieldset>
+      <div class="form-group">
+        <label for="eventId">Event Id</label>
+        <input type="number" class="form-control" id="eventId" placeholder="Enter eventId" name="eventId"
+          required="required" formControlName="EventId"  >
+      </div>
+      <div class="form-group">
+        <label for="eventCode">Event Code</label>
+        <input type="text" class="form-control" id="eventCode" placeholder="Enter event code" name="eventCode"
+          required="required" formControlName="EventCode">
+
+        <div class="alert alert-danger" *ngIf="demoEventForm.eventForm.controls['EventCode'].hasError('required')">
+          Event Code is a required field!
+        </div>
+        <div class="alert alert-danger" *ngIf="demoEventForm.eventForm.controls['EventCode'].hasError('minlength')">
+          Event Code can not be less than 6 characters!
+        </div>
+        <div class="alert alert-danger" *ngIf="demoEventForm.eventForm.controls['EventCode'].hasError('maxlength')">
+          Event Code can not be more than 6 characters!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="eventName">Event Name</label>
+        <input type="text" class="form-control" id="eventName" placeholder="Enter event name" name="eventName"
+          formControlName="EventName">
+      </div>
+      <div class="form-group">
+        <label for="description">Event Description</label>
+        <input type="text" class="form-control" id="description" placeholder="Enter event description"
+          name="description" formControlName="Description">
+      </div>
+      <div class="form-group">
+        <label for="startDate">Event Start Date</label>
+        <input type="date" class="form-control" id="startDate" placeholder="Enter event Start Date" name="startDate"
+          formControlName="StartDate">
+      </div>
+      <div class="form-group">
+        <label for="endDate">Event End Date</label>
+        <input type="date" class="form-control" id="endDate" placeholder="Enter event End Date" name="endDate"
+          formControlName="EndDate">
+      </div>
+      <div class="form-group">
+        <label for="fees">Event Fees</label>
+        <input type="number" class="form-control" id="fees" placeholder="Enter fees" name="fees" formControlName="Fees">
+      </div>
+      <div class="form-group">
+        <label for="seatsFilled">Total Registrations</label>
+        <input type="number" class="form-control" id="seatsFilled" placeholder="Enter total registration number"
+          name="seatsFilled" required="required" formControlName="SeatsFilled">
+      </div>
+      <!-- [disabled]="demoEventForm.eventForm.status == 'INVALID'" -->
+      <button type="submit" class="btn btn-primary" (click)="onEventSubmit($event)"
+      >Register Event!</button>
+    </fieldset>
+  </form>
+</div>

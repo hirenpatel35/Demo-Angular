@@ -1,0 +1,55 @@
+
+
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-1">
+                Users
+            </div>
+            <div class="col-md-3">
+                <select name="targetBankAccount" (change)="userSelected($event)">
+                    <option value="0">--Select--</option>
+                    <option *ngFor="let item of users;" [value]="item.id">
+                        {{item.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+
+<div class="bs-docs-section" >
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-hover" *ngIf="posts && posts.length>0;else noPostDataTemplate">
+                <thead>
+                    <th>
+                        Title:
+                    </th>
+                    <th>
+                        Body:
+                    </th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of posts;">
+                        <td>
+                            <span innerText={{item.title}}></span>
+                        </td>
+                        <td>
+                            <span innerText={{item.body}}></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #noPostDataTemplate>No Post Found!</ng-template>
+
+</div>

@@ -1,0 +1,52 @@
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label for="txtEmail" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email"
+                [(ngModel)]="user.EMail" required="required" [email]="true" #email="ngModel" (ngModelChange)="test()">
+              <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.untouched)">
+                <div *ngIf="email.errors.required">
+                  Email is required.
+                </div>
+                <div *ngIf="email.errors.email">
+                  Email is invalid.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="txtPassword" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10">
+              <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="Password"
+                [(ngModel)]="user.Password" required minlength="4" #password="ngModel">
+                <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.untouched)">
+                  <div *ngIf="password.errors.required">
+                    Password is required.
+                  </div>
+                  <div *ngIf="password.errors.minlength">
+                    Password must be at least 4 character.
+                  </div>
+                </div>
+            </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary" (click)="login($event)">Login</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+</div>
